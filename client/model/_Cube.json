@@ -1,0 +1,13 @@
+{
+	"meshes": [ 
+        {
+            "defaultTexture": "img/crate.png",
+            "submeshes": [
+                { 
+                    "indexOffset": 0,
+                    "indexLength": 36
+                }
+            ]
+        }
+     ]
+}

@@ -1,0 +1,13 @@
+{
+	"meshes": [ 
+        {
+            "defaultTexture": "img/brownWood.png",
+            "submeshes": [
+                { 
+                    "indexOffset": 0,
+                    "indexLength": 1128
+                }
+            ]
+        }
+     ]
+}

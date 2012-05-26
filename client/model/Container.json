@@ -1,0 +1,13 @@
+{
+	"meshes": [ 
+        {
+            "defaultTexture": "img/containerbake.png",
+            "submeshes": [
+                { 
+                    "indexOffset": 0,
+                    "indexLength": 2448
+                }
+            ]
+        }
+     ]
+}
