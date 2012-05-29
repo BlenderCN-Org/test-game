@@ -27,11 +27,6 @@ define(['app/webgl'],function(webgl)
 						"varying vec2 texCoord;",
 						"varying vec3 diffuseLight;",
 						
-						"vec3 rotateVector(vec3 v, vec4 quat){",
-						"	vec4 q = normalize(quat);",
-						"	return v + 2.0*cross(q.xyz, cross(q.xyz,v) + q.w*v);",
-						"}",
-						
 						"void main(void) {",
 						" texCoord = vertexTexCoord;",
 						
