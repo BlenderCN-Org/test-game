@@ -82,11 +82,6 @@ define(['app/webgl'],function(webgl)
 	 */
 	Renderer.prototype._drawModel = function (gl, model)
 	{
-		if (!model.binComplete || !model.jsonComplete)
-		{
-			return;
-		}
-
 		var i, j, k, instance, mesh, submesh;
 
 		gl.bindBuffer(gl.ARRAY_BUFFER, model.vertexBuffer);
@@ -129,11 +124,13 @@ define(['app/webgl'],function(webgl)
 		for(var i in this.models)
 		{
 			var model = this.models[i];
+            
+            if (!model.binComplete || !model.jsonComplete)
+        	{
+        		return;
+        	}
 			
-			gl.bindBuffer(gl.ARRAY_BUFFER, model.vertexBuffer);
-	        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.indexBuffer);
-
-	        gl.uniformMatrix4fv(this.shader.uniform.viewMatrix, false, camera.viewMatrix);
+			gl.uniformMatrix4fv(this.shader.uniform.viewMatrix, false, camera.viewMatrix);
 	        gl.uniformMatrix4fv(this.shader.uniform.projectionMatrix, false, camera.projectionMatrix);
 	        gl.uniform3fv(this.shader.uniform.lightDirection, light.direction);
 	        

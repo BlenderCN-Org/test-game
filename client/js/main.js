@@ -49,7 +49,7 @@ require(['lib/domReady',
     
     function loadModels()
     {
-    	cubeModel = importer.Unity.load(gl,"model/Cube");
+    	cubeModel = importer.Blender.load(gl,"model/scene");
         cubeInstance = cubeModel.createInstance();
         
         renderer.addModel(cubeModel);

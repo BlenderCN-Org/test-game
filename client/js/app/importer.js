@@ -15,7 +15,7 @@ define(['app/webgl',
 	var Unity = {};
 	
 	/**
-	 * Loads a model and returns it by the callback
+	 * Loads a model
 	 * @param gl
 	 * @param url
 	 * @returns
@@ -113,8 +113,66 @@ define(['app/webgl',
 			model.meshes.push(mesh);
 		}
 	};
+    
+    /*************************************************************************
+     * Blender model importer class
+	 *************************************************************************/
+	
+	/**
+	 * Model importer object
+	 */
+	var Blender = {};
+	
+	/**
+	 * Loads a model
+	 * @param gl
+	 * @param url
+	 * @returns
+	 */
+	Blender.load = function(gl, url)
+	{
+        var model = new m.Model();
+    	
+		var request = new XMLHttpRequest();
+        request.open('GET', url + ".json", true);
+        request.onload = function() {
+        	var data = JSON.parse(this.responseText);
+            
+        	Blender._parseJSON(gl,data,model);
+            
+            model.binComplete = true;
+        	model.jsonComplete = true;
+        };
+        request.send(null);
+        
+        return model;
+	};
+    
+    /**
+     * Parses the JSON model.
+	 * @param gl
+	 * @param data
+	 * @param model
+	 */
+	Blender._parseJSON = function(gl, data, model) {
+	    var mesh = new m.Mesh();
+	    mesh.textureUnit = webgl.Util.loadTexture(gl, data.texture);
+	
+	    var submesh = new m.SubMesh();
+	    submesh.indexOffset = 0;
+	    submesh.indexLength = data.index[0].length;
+	
+	    mesh.submeshes.push(submesh);
+	
+	    model.meshes.push(mesh);
+        
+        model.setVertexBuffer(gl,new Float32Array(data.total[0]));
+    	model.setIndexBuffer(gl,new Uint16Array(data.index[0]));
+	};
 	
 	return {
-		Unity : Unity
+		Unity : Unity,
+        
+        Blender : Blender
 	};
 });
