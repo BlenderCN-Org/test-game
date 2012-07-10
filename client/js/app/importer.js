@@ -166,7 +166,7 @@ define(['app/webgl',
 	
 	    model.meshes.push(mesh);
         
-        model.setVertexBuffer(gl,new Float32Array(data.total[0]));
+        model.setVertexBuffer(gl,new Float32Array(data.vertex[0]));
     	model.setIndexBuffer(gl,new Uint16Array(data.index[0]));
 	};
 	
